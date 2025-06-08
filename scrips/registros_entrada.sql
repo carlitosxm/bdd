@@ -18,10 +18,13 @@ INSERT INTO registros_entrada (codigo_registro, cedula_empleado, fecha, hora) VA
 (7, '1000000007', '2025-06-01', '07:55:00'),
 (8, '1000000008', '2025-06-01', '08:15:00'),
 (9, '1000000009', '2025-06-01', '08:03:00'),
-(10,'1000000010', '2025-06-01', '16:07:00');
+(10,'1000000010', '2025-08-01', '16:07:00');
 
 --select* from registros_entrada;
 
 select cedula_empleado, fecha, hora from registros_entrada;
 select * from registros_entrada where hora BETWEEN '7:00' and '14:00';
 select * from registros_entrada where hora > '8:00';
+
+
+update registros_entrada set cedula_empleado = '082345679' where fecha BETWEEN '2025-08-01' and '2025-08-31';

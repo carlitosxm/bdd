@@ -28,3 +28,6 @@ insert into productos (codigo,nombre,precio,stock) values
 select * from productos where nombre Like 'Q%';
 select * from productos WHERE descripcion is null;
 select * from productos where precio BETWEEN money(2) and money(3);
+
+
+update productos set stock = 0 where descripcion is null;

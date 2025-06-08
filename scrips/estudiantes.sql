@@ -24,3 +24,7 @@ INSERT INTO estudiantes (cedula, nombre, apellido, email, fecha_nacimiento) VALU
 select nombre,cedula from estudiantes;
 select nombre,cedula from estudiantes where cedula like '17%';
 select nombre||' '||apellido as nombre_completo from estudiantes where nombre like 'A%';
+
+
+
+update estudiantes set apellido = 'Hernández' where cedula like '17%';

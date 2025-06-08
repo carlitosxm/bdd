@@ -19,9 +19,9 @@ INSERT INTO transacciones (codigo, numero_cuenta, monto, tipo, fecha, hora) VALU
 (5, 'E1357', 750.25, 'c', '2025-06-03', '16:00:00'),
 (6, 'F2468', 450.75, 'd', '2025-06-03', '17:30:00'),
 (7, 'G9753', 2000.00, 'c', '2025-06-04', '08:10:00'),
-(8, 'H8642', 600.00, 'd', '2025-06-04', '12:00:00'),
+(8, 'H8642', 600.00, 'd', '2025-09-04', '12:00:00'),
 (9, 'I7531', 1000.00, 'c', '2025-06-05', '13:50:00'),
-(10, 'J6420', 350.00, 'd', '2025-06-05', '15:25:00');
+(10, 'J6420', 350.00, 'd', '2025-09-05', '15:25:00');
 
 
 
@@ -29,3 +29,7 @@ INSERT INTO transacciones (codigo, numero_cuenta, monto, tipo, fecha, hora) VALU
 select * from transacciones where tipo ='d';
 select * from transacciones where monto between money(200) and  money(2000);
 select codigo,monto, tipo, fecha from transacciones where fecha is not null;
+
+
+
+update transacciones set tipo = 'T' where (monto > money(100) and monto < money(500)) and (fecha BETWEEN '2025-09-01' and '2025-09-30') and (hora BETWEEN '14:00' and '20:00'); 
