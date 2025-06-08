@@ -19,7 +19,7 @@ ALTER TABLE IF EXISTS public.cuentas
 
 
 INSERT INTO public.cuentas (numero_cuenta, cedula_propietario, fecha_creacion, saldo) VALUES
-('00001', '00001', '2020-01-15', 1500.00),
+('00001', '10001', '2020-01-15', 1500.00),
 ('00002', '00002', '2021-03-22', 2450.50),
 ('00003', '00003', '2019-07-10', 320.75),
 ('00004', '00004', '2023-11-05', 7800.00),
@@ -38,3 +38,6 @@ select numero_cuenta,saldo from cuentas where fecha_creacion BETWEEN CURRENT_DAT
 
 
 update cuentas set saldo = money(10) where cedula_propietario like '17%';
+
+
+delete from cuentas where cedula_propietario like '10%';

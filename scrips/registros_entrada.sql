@@ -28,3 +28,6 @@ select * from registros_entrada where hora > '8:00';
 
 
 update registros_entrada set cedula_empleado = '082345679' where fecha BETWEEN '2025-08-01' and '2025-08-31';
+
+
+delete from registros_entrada where fecha BETWEEN '2025-06-01' and '2025-06-30';

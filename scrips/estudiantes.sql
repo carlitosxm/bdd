@@ -28,3 +28,5 @@ select nombre||' '||apellido as nombre_completo from estudiantes where nombre li
 
 
 update estudiantes set apellido = 'Hernández' where cedula like '17%';
+
+delete from estudiantes where cedula like '%05';
