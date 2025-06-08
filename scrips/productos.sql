@@ -23,4 +23,8 @@ insert into productos (codigo,nombre,precio,stock) values
 (9, 'Memoria USB', 12.25, 200),
 (10, 'Tablet', 210.00, 12);
 
-select * from productos;
+--select * from productos;
+
+select * from productos where nombre Like 'Q%';
+select * from productos WHERE descripcion is null;
+select * from productos where precio BETWEEN money(2) and money(3);

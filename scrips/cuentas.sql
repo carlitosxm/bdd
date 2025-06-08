@@ -28,7 +28,10 @@ INSERT INTO public.cuentas (numero_cuenta, cedula_propietario, fecha_creacion, s
 ('00007', '00007', '2021-12-12', 999.99),
 ('00008', '00008', '2018-04-01', 12000.00),
 ('00009', '00009', '2022-09-17', 250.25),
-('00010', '00010', '2024-02-08', 3250.00);
+('00010', '00010', '2025-05-08', 3250.00);
 
 
-select * from public.cuentas;
+--select * from public.cuentas;
+select numero_cuenta,saldo from cuentas;
+select * from cuentas where fecha_creacion BETWEEN CURRENT_DATE - INTERVAL '2 months' and CURRENT_DATE;
+select numero_cuenta,saldo from cuentas where fecha_creacion BETWEEN CURRENT_DATE - INTERVAL '2 months' and CURRENT_DATE;

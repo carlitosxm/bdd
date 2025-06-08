@@ -18,6 +18,9 @@ INSERT INTO estudiantes (cedula, nombre, apellido, email, fecha_nacimiento) VALU
 ('1000000005', 'Carlos','Ramírez', 'carlos.ramirez@email.com', '1984-01-08'),
 ('1000000006', 'Lucía', 'Torres',  'lucia.torres@email.com',   '1997-06-30'),
 ('1000000007', 'Pedro', 'Sánchez','pedro.sanchez@email.com',  '1991-03-15'),
-('1000000010', 'Valentina','Ríos','valentina.rios@email.com','2000-04-05');
+('1700000010', 'Valentina','Ríos','valentina.rios@email.com','2000-04-05');
 
-select * from estudiantes;
+--select * from estudiantes;
+select nombre,cedula from estudiantes;
+select nombre,cedula from estudiantes where cedula like '17%';
+select nombre||' '||apellido as nombre_completo from estudiantes where nombre like 'A%';
