@@ -10,6 +10,29 @@ create table estudiantes(
 	CONSTRAINT estudiante_pk PRIMARY key (cedula)
 );
 
+-------------reto 23
+INSERT INTO estudiantes (cedula, nombre, apellido, email, fecha_nacimiento, codigo_profesor) VALUES
+('1234567890', 'Carlos', 'Núñez', 'carlos@example.com', '2000-01-15', 1),
+('0987654321', 'Ana', 'Mendoza', 'ana@example.com', '1999-05-20', 2),
+('1112233445', 'Luis', 'Fernández', 'luis@example.com', '2001-07-10', 1),
+('5556677889', 'María', 'González', 'maria@example.com', '2002-09-25', 3),
+('2223334445', 'Jorge', 'Sánchez', 'jorge@example.com', '2000-11-30', 4),
+('3334445556', 'Lucía', 'Pérez', 'lucia@example.com', '1998-12-05', 2),
+('4445556667', 'Pedro', 'Ramírez', 'pedro@example.com', '1997-08-17', 5),
+('5556667778', 'Sofía', 'López', 'sofia@example.com', '2001-03-14', 3),
+('6667778889', 'Andrés', 'Vargas', 'andres@example.com', '2000-06-22', 4),
+('7778889990', 'Mónica', 'Torres', 'monica@example.com', '1999-02-28', 5);
+--------------
+
+-----agregar columna relacion tabla profesor
+ALTER TABLE estudiantes
+ADD COLUMN codigo_profesor INT;
+
+ALTER TABLE estudiantes
+ADD CONSTRAINT codigo_profesor_fk
+FOREIGN KEY (codigo_profesor) REFERENCES profesores(codigo);
+---------------------
+
 INSERT INTO estudiantes (cedula, nombre, apellido, email, fecha_nacimiento) VALUES
 ('1000000001', 'Juan','Pérez','juan.perez@email.com',     '1995-05-12'),
 ('1000000002', 'María','Gómez','maria.gomez@email.com',    '1998-11-03'),

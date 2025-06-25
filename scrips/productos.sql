@@ -9,6 +9,40 @@ CREATE TABLE productos(
 	stock int not null,
 	CONSTRAINT producto_pk PRIMARY KEY (codigo)	
 );
+
+-------insert reto 23
+INSERT INTO productos (codigo, nombre, descripcion, precio, stock) 
+VALUES (1, 'Impresora', 'Impresora multifuncional', 150.00, 10);
+
+INSERT INTO productos (codigo, nombre, descripcion, precio, stock) 
+VALUES (2, 'Monitor', 'Monitor LED 24 pulgadas', 120.00, 15);
+
+INSERT INTO productos (codigo, nombre, descripcion, precio, stock) 
+VALUES (3, 'Mouse', 'Mouse inalámbrico', 18.50, 30);
+
+INSERT INTO productos (codigo, nombre, descripcion, precio, stock) 
+VALUES (4, 'Teclado', 'Teclado mecánico retroiluminado', 35.00, 20);
+
+-- Descripción NULL
+INSERT INTO productos (codigo, nombre, descripcion, precio, stock) 
+VALUES (5, 'Cable HDMI', NULL, 8.75, 50);
+
+INSERT INTO productos (codigo, nombre, descripcion, precio, stock) 
+VALUES (6, 'Webcam', 'Cámara web HD', 45.00, 12);
+
+INSERT INTO productos (codigo, nombre, descripcion, precio, stock) 
+VALUES (7, 'Laptop', 'Laptop 15 pulgadas, 8GB RAM', 580.00, 8);
+
+INSERT INTO productos (codigo, nombre, descripcion, precio, stock) 
+VALUES (8, 'Memoria USB', 'Memoria de 64GB', 12.00, 100);
+
+INSERT INTO productos (codigo, nombre, descripcion, precio, stock) 
+VALUES (9, 'Tablet', 'Tablet Android 10"', 210.00, 6);
+
+INSERT INTO productos (codigo, nombre, descripcion, precio, stock) 
+VALUES (10, 'Cámara', 'Cámara digital compacta', 300.00, 5);
+----------------
+
 INSERT INTO productos (codigo, nombre, descripcion, precio, stock) VALUES
 (1, 'Laptop', 'Laptop de 15 pulgadas con SSD', 850.00, 10),
 (2, 'Mouse', 'Mouse óptico inalámbrico', 15.99, 50),

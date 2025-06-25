@@ -6,10 +6,25 @@ create table transacciones(
 	numero_cuenta char (5)not null,
 	monto money not null,
 	tipo char (1) not null,
-	fecha date not null,
-	hora time not null,
-	constraint transaccion primary key (codigo)
+	fecha date ,
+	hora time ,
+	constraint transacciones_codigo_pk primary key (codigo)
 );
+------------reto 23
+INSERT INTO transacciones (codigo, numero_cuenta, monto, tipo, fecha, hora) VALUES
+(1, '22001', 200.00, 'C', '2024-01-15', '10:00'),    
+(2, '22002', 150.00, 'C', '2024-02-10', '11:30'),    
+(3, '22003', 100.00, 'C', '2024-03-05', '09:45'),    
+(4, '22005', 80.00,  'D', '2024-04-01', '13:20'),
+(5, '22006', 60.00,  'D', '2024-04-05', '14:00'),
+(6, '22007', 120.00, 'D', '2024-05-01', '08:50'),
+(7, '22008', 500.00, 'D', '2024-05-10', '12:15'),
+(8, '22009', 300.00, 'C', '2024-06-01', '15:30'),
+(9, '22010', 250.00, 'D', '2024-06-15', '10:10'),
+(10, '22011', 90.00, 'D', '2024-07-01', '09:00');
+------------
+
+
 
 INSERT INTO transacciones (codigo, numero_cuenta, monto, tipo, fecha, hora) VALUES
 (1, 'A1234', 1500.00, 'c', '2025-06-01', '10:30:00'),
