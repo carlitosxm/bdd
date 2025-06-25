@@ -91,5 +91,5 @@ OR (r.cedula_empleado LIKE '%07%' AND r.hora BETWEEN TIME '09:00' AND TIME '13:0
 
 SELECT r.codigo_registro, e.nombre from registros_entrada r, empleado e
 where e.codigo_empleado = r.codigo_empleado
-and r.cedula_empleado like '%2201%'
+and e.codigo_empleado = 2201
 
