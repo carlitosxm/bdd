@@ -8,8 +8,10 @@ CONSTRAINT codigo_pk primary key (codigo)
 
 
 INSERT INTO profesores (codigo, nombre) VALUES
-(1, 'Francisco'),
-(2, 'Ana'),
-(3, 'Luis'),
-(4, 'María'),
-(5, 'Jorge');
+(11, 'Francisco'),
+(12, 'Ana'),
+(13, 'Luis'),
+(14, 'María'),
+(15, 'Jorge');
+
+select * from profesores

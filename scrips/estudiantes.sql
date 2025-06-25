@@ -21,7 +21,7 @@ INSERT INTO estudiantes (cedula, nombre, apellido, email, fecha_nacimiento, codi
 ('4445556667', 'Pedro', 'Ramírez', 'pedro@example.com', '1997-08-17', 5),
 ('5556667778', 'Sofía', 'López', 'sofia@example.com', '2001-03-14', 3),
 ('6667778889', 'Andrés', 'Vargas', 'andres@example.com', '2000-06-22', 4),
-('7778889990', 'Mónica', 'Torres', 'monica@example.com', '1999-02-28', 5);
+('7778889990', 'Mónica', 'Torres', 'monica@example.com', '1999-02-28', 11);
 --------------
 
 -----agregar columna relacion tabla profesor
