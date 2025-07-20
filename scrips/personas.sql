@@ -25,4 +25,6 @@ REFERENCES estado_civil(codigo);
 insert into personas (cedula, nombre, apellido,estado_civil_codigo)
 values ('1721949756','Carlos','Tipan','U');
 
+delete from personas where cedula='1721949752'
+
 select * from personas;

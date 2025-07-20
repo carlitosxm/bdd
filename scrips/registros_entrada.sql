@@ -44,6 +44,11 @@ INSERT INTO registros_entrada (codigo_registro, cedula_empleado, fecha, hora) VA
 (9, '1000000009', '2025-06-01', '08:03:00'),
 (10,'1000000010', '2025-08-01', '16:07:00');
 
+
+delete from registros_entrada where codigo_registro = 5741;
+
+select * from registros_entrada
+
 --select* from registros_entrada;
 
 select cedula_empleado, fecha, hora from registros_entrada;

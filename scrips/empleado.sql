@@ -19,5 +19,6 @@ INSERT INTO empleado (codigo_empleado, nombre, fecha, hora) VALUES
 (2209, 'Mateo', '2023-11-12', '11:00:00'),
 (2210, 'Luisa', '2023-12-28', '12:30:00');
 
+delete from empleado where codigo_empleado = 5741
 
 select * from empleado
