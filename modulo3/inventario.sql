@@ -12,104 +12,128 @@ DROP TABLE IF EXISTS categoria_unidad_medida;
 DROP TABLE IF EXISTS proveedores;
 DROP TABLE IF EXISTS tipo_documentos;
 
---  tabla categoria_unidad_medida
+-- tabla categoria_unidad_medida
 CREATE TABLE categoria_unidad_medida (
-    codigo CHAR(1) NOT NULL PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL
+    codigo CHAR(1) NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    CONSTRAINT pk_categoria_unidad_medida PRIMARY KEY (codigo)
 );
 
---  tabla unidades_medidas
+-- tabla unidades_medidas
 CREATE TABLE unidades_medidas (
-    codigo_udm VARCHAR(10) NOT NULL PRIMARY KEY,
+    codigo_udm VARCHAR(10) NOT NULL,
     descripcion VARCHAR(50) NOT NULL,
-    categoria_udm CHAR(1) NOT NULL REFERENCES categoria_unidad_medida(codigo)
+    categoria_udm CHAR(1) NOT NULL,
+    CONSTRAINT pk_unidades_medidas PRIMARY KEY (codigo_udm),
+    CONSTRAINT fk_categoria_udm FOREIGN KEY (categoria_udm) REFERENCES categoria_unidad_medida(codigo)
 );
 
---  tabla categorias
+-- tabla categorias
 CREATE TABLE categorias (
-    codigo_cat SERIAL NOT NULL PRIMARY KEY,
+    codigo_cat SERIAL NOT NULL,
     nombre VARCHAR(100) NOT NULL,
-    categoria_padre INT REFERENCES categorias(codigo_cat)
+    categoria_padre INT,
+    CONSTRAINT pk_categorias PRIMARY KEY (codigo_cat),
+    CONSTRAINT fk_categoria_padre FOREIGN KEY (categoria_padre) REFERENCES categorias(codigo_cat)
 );
 
---  tabla productos
+-- tabla productos
 CREATE TABLE productos (
-    codigo SERIAL NOT NULL PRIMARY KEY,
+    codigo SERIAL NOT NULL,
     nombre VARCHAR(100) NOT NULL,
-    udm VARCHAR(10) NOT NULL REFERENCES unidades_medidas(codigo_udm),
+    udm VARCHAR(10) NOT NULL,
     precio_venta MONEY NOT NULL,
     tiene_iva BOOLEAN NOT NULL,
     coste MONEY NOT NULL,
-    categoria INT NOT NULL REFERENCES categorias(codigo_cat),
-    stock INT NOT NULL
+    categoria INT NOT NULL,
+    stock INT NOT NULL,
+    CONSTRAINT pk_productos PRIMARY KEY (codigo),
+    CONSTRAINT fk_udm FOREIGN KEY (udm) REFERENCES unidades_medidas(codigo_udm),
+    CONSTRAINT fk_categoria FOREIGN KEY (categoria) REFERENCES categorias(codigo_cat)
 );
 
---  tabla tipo_documentos
+-- tabla tipo_documentos
 CREATE TABLE tipo_documentos (
-    codigo CHAR(1) NOT NULL PRIMARY KEY,
-    descripcion VARCHAR(100) NOT NULL
+    codigo CHAR(1) NOT NULL,
+    descripcion VARCHAR(100) NOT NULL,
+    CONSTRAINT pk_tipo_documentos PRIMARY KEY (codigo)
 );
 
---  tabla proveedores
+-- tabla proveedores
 CREATE TABLE proveedores (
-    identificador VARCHAR(13) NOT NULL PRIMARY KEY,
-    id_tipo_documento CHAR(1) NOT NULL REFERENCES tipo_documentos(codigo),
+    identificador VARCHAR(13) NOT NULL,
+    id_tipo_documento CHAR(1) NOT NULL,
     nombre VARCHAR(100) NOT NULL,
     telefono VARCHAR(10) NOT NULL,
     correo VARCHAR(50) NOT NULL,
-    direccion VARCHAR(100) NOT NULL
+    direccion VARCHAR(100) NOT NULL,
+    CONSTRAINT pk_proveedores PRIMARY KEY (identificador),
+    CONSTRAINT fk_tipo_documento FOREIGN KEY (id_tipo_documento) REFERENCES tipo_documentos(codigo)
 );
 
---  tabla estado_pedidos
+-- tabla estado_pedidos
 CREATE TABLE estado_pedidos (
-    codigo CHAR(1) NOT NULL PRIMARY KEY,
-    descripcion VARCHAR(100) NOT NULL
+    codigo CHAR(1) NOT NULL,
+    descripcion VARCHAR(100) NOT NULL,
+    CONSTRAINT pk_estado_pedidos PRIMARY KEY (codigo)
 );
 
---  tabla cabecera_pedidos
+-- tabla cabecera_pedidos
 CREATE TABLE cabecera_pedidos (
-    numero SERIAL NOT NULL PRIMARY KEY,
-    id_proveedor VARCHAR(13) NOT NULL REFERENCES proveedores(identificador),
+    numero SERIAL NOT NULL,
+    id_proveedor VARCHAR(13) NOT NULL,
     fecha DATE NOT NULL,
-    id_estado CHAR(1) NOT NULL REFERENCES estado_pedidos(codigo)
+    id_estado CHAR(1) NOT NULL,
+    CONSTRAINT pk_cabecera_pedidos PRIMARY KEY (numero),
+    CONSTRAINT fk_proveedor FOREIGN KEY (id_proveedor) REFERENCES proveedores(identificador),
+    CONSTRAINT fk_estado FOREIGN KEY (id_estado) REFERENCES estado_pedidos(codigo)
 );
 
---  tabla detalle_pedidos
+-- tabla detalle_pedidos
 CREATE TABLE detalle_pedidos (
-    codigo SERIAL NOT NULL PRIMARY KEY,
-    id_cabecera_pedido INT NOT NULL REFERENCES cabecera_pedidos(numero),
-    id_producto INT NOT NULL REFERENCES productos(codigo),
+    codigo SERIAL NOT NULL,
+    id_cabecera_pedido INT NOT NULL,
+    id_producto INT NOT NULL,
     cantidad INT NOT NULL,
     subtotal MONEY NOT NULL,
-    cantidad_recibida INT NOT NULL
+    cantidad_recibida INT NOT NULL,
+    CONSTRAINT pk_detalle_pedidos PRIMARY KEY (codigo),
+    CONSTRAINT fk_cabecera_pedido FOREIGN KEY (id_cabecera_pedido) REFERENCES cabecera_pedidos(numero),
+    CONSTRAINT fk_producto FOREIGN KEY (id_producto) REFERENCES productos(codigo)
 );
 
---  tabla historial_stock
+-- tabla historial_stock
 CREATE TABLE historial_stock (
-    codigo SERIAL NOT NULL PRIMARY KEY,
+    codigo SERIAL NOT NULL,
     fecha TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     referencia VARCHAR(100) NOT NULL,
-    id_producto INT NOT NULL REFERENCES productos(codigo),
-    cantidad INT NOT NULL
+    id_producto INT NOT NULL,
+    cantidad INT NOT NULL,
+    CONSTRAINT pk_historial_stock PRIMARY KEY (codigo),
+    CONSTRAINT fk_historial_producto FOREIGN KEY (id_producto) REFERENCES productos(codigo)
 );
 
---  tabla cabecera_ventas
+-- tabla cabecera_ventas
 CREATE TABLE cabecera_ventas (
-    codigo SERIAL NOT NULL PRIMARY KEY,
+    codigo SERIAL NOT NULL,
     fecha TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     total_sin_iva MONEY NOT NULL,
     total_con_iva MONEY NOT NULL,
-    total MONEY NOT NULL
+    total MONEY NOT NULL,
+    CONSTRAINT pk_cabecera_ventas PRIMARY KEY (codigo)
 );
 
---  tabla detalle_ventas
+-- tabla detalle_ventas
 CREATE TABLE detalle_ventas (
-    codigo SERIAL NOT NULL PRIMARY KEY,
-    id_cabecera_ventas INT NOT NULL REFERENCES cabecera_ventas(codigo),
-    id_producto INT NOT NULL REFERENCES productos(codigo),
+    codigo SERIAL NOT NULL,
+    id_cabecera_ventas INT NOT NULL,
+    id_producto INT NOT NULL,
     cantidad INT NOT NULL,
     precio_venta MONEY NOT NULL,
-    subtotal_con_iva MONEY NOT NULL
+    subtotal_con_iva MONEY NOT NULL,
+    CONSTRAINT pk_detalle_ventas PRIMARY KEY (codigo),
+    CONSTRAINT fk_cabecera_ventas FOREIGN KEY (id_cabecera_ventas) REFERENCES cabecera_ventas(codigo),
+    CONSTRAINT fk_detalle_producto FOREIGN KEY (id_producto) REFERENCES productos(codigo)
 );
 
 -- insert categoria_unidad_medida
